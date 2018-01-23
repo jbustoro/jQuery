@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Practice with jquery</title>
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                //Seleccionar los asientos de la zona VIP y mostrarlos en pantalla.
+                console.log($("#zona_vip #row_1 li").text());
+                //Seleccionar los asientos de la zona POPULAR y mostrarlos en pantalla.
+                console.log($("#zona_popular #row_2 li").text());
+                //Mostrar en rojo todos los asientos 3 de todas las filas.
+                $("#asientos ul li ul li:nth-child(3)").css("color", "red");
+                //Mostrar en rojo todos los asientos de la zona VIP y poner el texto de “FILA COMPLETA” en la descripción de la fila.
+                $("#zona_vip li ul li").css("color", "red");
+                $("#row_1").html($("#row_1").html().replace("FILA Libre", "FILA COMPLETA"));
+                //Muestra en pantalla el número de asientos que están libres todavía (no están en rojo).
+                let asientosLibres = 0;
+                $("#asientos ul li ul li").each(function () {
+                    console.log($(this).css("color"));
+                    if($(this).css("color") === "rgb(0, 0, 0)"){
+                        asientosLibres++;
+                    }
+                });
+                console.log(asientosLibres);
+                //Seleccionar todos los asientos pares y marcarlos como reservados (en color azul).
+                $("#asientos ul li ul").find("li:odd").css("color", "blue");
+                //Anadir una fila nueva al final del todo, con sus correspondientes asientos.
+                $("<li/>", {
+                    id: "row_5",
+                    text: "FILA Nuevo",
+                }).appendTo("#zona_popular");
+
+                $("<ul/>", {}).appendTo("#row_5");
+
+                for (let i = 1; i <= 5; i++) {
+                    $("<li/>", {text: "asiento 5-" + i}).appendTo("#row_5 ul");
+                }
+                //Borrar los asientos de la zona VIP, y renombrar atributo id de las filas y adecuar el texto de los asientos.
+                $("#zona_vip #row_1").remove();
+
+                $("#zona_popular > li").each(function (index) {
+                    let fila = index + 1;
+                    $(this).attr("id", "row_" + fila);
+
+                    $(this).find("li").each(function () {
+                        $(this).html($(this).html().replace(fila+1 + "-", fila + "-"));
+                    });
+                });
+
+
+            });
+        </script>
+    </head>
+    <body>
+        <div id="asientos">
+            <b>CINE ZUBIRI</b>
+            <ul id="zona_vip">
+                <li id="row_1">FILA Libre
+                    <ul>
+                        <li>asiento 1-1</li>
+                        <li>asiento 1-2</li>
+                        <li>asiento 1-3</li>
+                        <li>asiento 1-4</li>
+                        <li>asiento 1-5</li>
+                    </ul>
+                </li>
+            </ul>
+            <ul id="zona_popular">
+                <li id="row_2">FILA Libre
+                    <ul>
+                        <li>asiento 2-1</li>
+                        <li>asiento 2-2</li>
+                        <li>asiento 2-3</li>
+                        <li>asiento 2-4</li>
+                        <li>asiento 2-5</li>
+                    </ul>
+                </li>
+                <li id="row_3">FILA Libre
+                    <ul>
+                        <li>asiento 3-1</li>
+                        <li>asiento 3-2</li>
+                        <li>asiento 3-3</li>
+                        <li>asiento 3-4</li>
+                        <li>asiento 3-5</li>
+                    </ul>
+                </li>
+                <li id="row_4">FILA Libre
+                    <ul>
+                        <li>asiento 4-1</li>
+                        <li>asiento 4-2</li>
+                        <li>asiento 4-3</li>
+                        <li>asiento 4-4</li>
+                        <li>asiento 4-5</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </body>
+</html>
