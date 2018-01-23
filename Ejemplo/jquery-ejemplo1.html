@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQuery-1</title>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    <style media="screen">
+        #paragraph{
+            display: none;
+        }
+
+        #click{
+            cursor: pointer;
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("<a/>", {
+                id: "foo",
+                class: "greenMan",
+                href: "http://ddg.gg",
+                title: "Become a DDGr",
+                rel: "external",
+            }).appendTo("body");
+
+            $("<img/>", {
+                src: "ddg.png",
+                width: "200px"
+            }).appendTo("a");
+
+            $("#press").on("click", function() {
+                $("#paragraph").fadeToggle();
+            });
+        });
+    </script>
+</head>
+<body>
+    <p id="press">Show/Hide text:</p>
+    <p id="paragraph">Hidden text</p>
+</body>
+</html>
