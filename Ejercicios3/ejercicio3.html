@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+    <style media="screen">
+        .embarcado {
+            color: rgb(39, 153, 47);
+        }
+
+        .no-embarcado{
+            color: rgb(223, 27, 27);
+        }
+
+        .pendiente{
+            color: rgb(143, 118, 196);
+        }
+    </style>
+    <script>
+        $(document).ready(function(){
+            //Añadir al elemento "h1" que tiene el nombre del vuelo, el nombre de vuelo asignado que sera “815 Oceanic”.
+            $("span").text(" 815 Oceanic");
+
+            //Guarda en tres variables los parámetros principales del vuelo (la hora de salida, la puerta de salida y el destino), si no tiene asignada todavía nada, almacena el valor "Sin asignar".
+            function getValue(parameter) {
+                return ($("#" + parameter + " > td").first().text()) ? $("#" + parameter + " > td").text() : "Sin especificar";
+            }
+
+            let $time = getValue("time");
+            let $gate = getValue("gate");
+            let $arrives = getValue("arrives");
+
+            console.log($time, $gate, $arrives);
+
+            //Añade entre paréntesis la hora de actualización de los paneles "Logística" y "Pasajeros". Después de cada actualización (ejercicio) se deberán actualizar las horas.
+            function setTime() {
+                let now = new Date(Date.now());
+                let currentTime = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+
+                $("h2").each(function () {
+                    $(this).text( $(this).text() + " (" + currentTime + ")" );
+                });
+            }
+
+            setTime();
+
+            //Tendremos tres clases diferentes para los pasajeros que hayan embarcado, esten pendientes y no hallan embarcado (elegir colores y características que queráis).
+
+            //Añadir a los pasajeros cuyo nombre no empiece por "J" la clase de embarcados. Todos los demás estarán pendientes todavía.
+            $("ul li").each(function () {
+                if ($(this).text().indexOf("J") !== 0) {
+                    $(this).removeClass("no-embarcado").removeClass("pendiente").addClass("embarcado");
+                } else {
+                    $(this).removeClass("no-embarcado").removeClass("embarcado").addClass("pendiente");
+                }
+            });
+
+            //Añadir características al vuelo (puerta, hora y destino).
+            $("#time").find(td).text("16:00");
+            //Marcar como embarcados a todos los pasajeros que quedan sin hacerlo excepto "Charlie Pace", que sera "no embarcado".
+            $("ul li").each(function () {
+                if ($(this).text() !== "Charlie Pace") {
+                    $(this).removeClass("no-embarcado").removeClass("pendiente").addClass("embarcado");
+                } else {
+                    $(this).removeClass("embarcado").removeClass("pendiente").addClass("no-embarcado");
+                }
+            });
+        });
+    </script>
+    <style type="text/css">
+    </style>
+</head>
+<body>
+    <h1>Vuelo<span> sin especificar </span></h1>
+    <h2>Logistica</h2>
+    <table id="logistics">
+        <tbody>
+            <tr id="time">
+                <th>Hora:</th>
+                <td></td>
+            </tr>
+            <tr id="gate">
+                <th>Puerta:</th>
+                <td></td>
+            </tr>
+            <tr id="arrives">
+                <th>Destino:</th>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <h2>Pasajeros</h2>
+    <ul>
+        <li>Jack Shephard</li>
+        <li>Kate Austin</li>
+        <li>James “Sawyer” Ford</li>
+        <li>John Locke</li>
+        <li>Hugo “Hurley” Reyes</li>
+        <li>Benjamin Linus</li>
+        <li>Charlie Pace</li>
+        <li>Juliet Burke</li>
+    </ul>
+</body>
+</html>
