@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ejercicio 1</title>
+</head>
+<style media="screen">
+    div {
+        float: left;
+        margin: 0.2em;
+    }
+
+    img#pepe{
+        height: 400px;
+        width: 400px;
+    }
+
+    .paragraph {
+        text-align: justify;
+    }
+
+    .red {
+        color: red;
+        font-size: 20px;
+    }
+
+    form {
+        float: left;
+    }
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(function() {
+    //1. Crea una página con diferentes elementos (div, p, a, li):
+
+    //• Al hacer clic en los párrafos, estos se borraran.
+        $("p").on("click", function(){
+            $(this).remove();
+        });
+    //• Los enlaces, que apuntaran a la web de zubiri, no se abrirán y se avisara con un alert de que se ha bloqueado el enlace.
+        $("a").on("click", function (event) {
+            alert("Se ha bloqueado el enlace");
+
+            return false;
+        });
+    //• Al pasar el ratón por encima de los li estos se les añadirá una clase que modifique el aspecto del texto.
+        $("li").on({
+            mouseenter: function () {
+                $(this).addClass("red");
+            },
+            mouseleave: function () {
+                $(this).removeClass("red");
+            }
+        });
+    //• Al hacer clic en el algún elemento div, se borrara el contenido completo de estos y se añadirá el texto de “BORRADO!!”
+        $("div").on("click", function () {
+            $(this).text("DELETED!");
+        });
+    });
+</script>
+<body>
+    <div class="title">
+        <h1>Ejercicios Eventos jQuery</h1>
+        <a href="http://www.zubirimanteo.hezkuntza.net/">IES Xabier Zubiri Manteo BHI</a>
+    </div>
+    <div class="paragraph">
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sit amet risus ex. Nulla ac orci orci. Maecenas tristique nulla eget diam mollis, ac pellentesque ligula accumsan. Mauris maximus rhoncus nisl quis efficitur. Etiam dignissim pharetra imperdiet. Phasellus condimentum non magna sit amet imperdiet. Vestibulum tempus venenatis iaculis. Donec consequat eu nibh ac blandit. Praesent mollis risus quis nisi scelerisque, vel ultrices est convallis. Sed mollis risus eu turpis elementum ullamcorper. Proin iaculis tempor mauris, a pretium tortor imperdiet vel. Praesent mollis lacus nec nisi volutpat, vel convallis eros rhoncus. Nulla in nisl consectetur, ullamcorper urna sed, eleifend purus.
+        </p>
+    </div>
+    <div class="image">
+        <a href="https://ddg.gg"><img id="pepe" src="https://i.imgur.com/lRq6T7n.gif"/></a>
+        <br/>
+        <a href="ddg.com">Duck it!</a>
+    </div>
+    <div class="list">
+        <ul>
+            <li>Nam quibus rebus efficiuntur voluptates, eae non sunt in potestate sapientis.</li>
+            <li>Quod autem meum munus dicis non equidem recuso, sed te adiungo socium.</li>
+            <li>Faceres tu quidem, Torquate, haec omnia;</li>
+            <li>Cum salvum esse flentes sui respondissent, rogavit essentne fusi hostes.</li>
+            <li>Sed quid ages tandem, si utilitas ab amicitia, ut fit saepe, defecerit?</li>
+            <li>Aut, Pylades cum sis, dices te esse Orestem, ut moriare pro amico?</li>
+            <li>Quid turpius quam sapientis vitam ex insipientium sermone pendere?</li>
+            <li>Mihi enim satis est, ipsis non satis.</li>
+            <li>Hoc non est positum in nostra actione.</li>
+            <li>Sed mehercule pergrata mihi oratio tua.</li>
+            <li>Cras consectetur urna sed purus finibus consectetur.</li>
+            <li>Quam tu ponis in verbis, ego positam in re putabam.</li>
+            <li>At ille non pertimuit saneque fidenter: Istis quidem ipsis verbis, inquit;</li>
+            <li>Duo enim genera quae erant, fecit tria.</li>
+            <li>Nunc sollicitudin nisl sed efficitur malesuada.</li>
+            <li>Profectus in exilium Tubulus statim nec respondere ausus;</li>
+            <li>Ut in geometria, prima si dederis, danda sunt omnia.</li>
+            <li>At quicum ioca seria, ut dicitur, quicum arcana, quicum occulta omnia?</li>
+            <li>Tu enim ista lenius, hic Stoicorum more nos vexat.</li>
+            <li>Etiam a arcu nec lectus eleifend interdum ut ac lectus.</li>
+        </ul>
+    </div>
+    <div class="paragraph">
+        <p>
+            Sed vel finibus ante, ac cursus justo. Nulla euismod ultrices orci, vel feugiat arcu lacinia ut. Phasellus dapibus elit et nisi lacinia ornare. Suspendisse aliquam velit nec ex porta, eget pretium orci pellentesque. Sed ut nisl magna. Cras a sapien vitae eros pellentesque molestie. Sed sed dui sollicitudin, facilisis nisi ut, egestas urna. Vivamus volutpat rhoncus pretium. Aenean urna odio, tincidunt in ultrices eu, luctus nec est. Aliquam vestibulum dolor eu nisl sollicitudin, id porttitor mi molestie. Etiam eu lectus sollicitudin, ultrices lacus nec, elementum odio. Curabitur tristique, erat nec accumsan fermentum, justo tellus ultrices sem, sed rutrum ante risus at urna. Suspendisse ac nisl eu velit lacinia hendrerit id et ligula. Phasellus auctor rhoncus mi, non luctus arcu varius ornare. Suspendisse bibendum orci tortor, dignissim lacinia lorem pellentesque ac.
+        </p>
+        <p>
+            Morbi quis massa sed tellus tempor facilisis quis id diam. Curabitur et enim felis. Morbi sem ex, tristique ac consequat sit amet, venenatis vitae orci. Proin ac dolor ligula. Maecenas fringilla neque justo, vitae convallis eros scelerisque sed. Etiam molestie tellus eget sagittis dictum. Ut ut ipsum at massa efficitur vulputate in aliquet ante.
+        </p>
+        <p>
+            Nullam gravida lacus at placerat fermentum. Cras leo leo, hendrerit id mi in, molestie elementum erat. Sed nunc magna, ultricies sed nisl sed, cursus pulvinar tortor. Donec blandit vehicula libero quis aliquet. Pellentesque erat sapien, luctus in ante non, dictum pulvinar orci. Sed eget justo a nisi venenatis consequat. Duis urna neque, maximus nec est ut, condimentum pretium augue. Phasellus molestie, mauris eget tempor volutpat, diam arcu vulputate leo, in faucibus ligula felis eget nisl. Cras lacus lorem, molestie ac semper at, blandit in nunc. Curabitur arcu sapien, vestibulum eu nisl eu, facilisis lobortis dolor. Etiam ex diam, tristique et ante at, porta ultricies mauris. Duis interdum purus lacus, ut dapibus urna dignissim vel. Duis sit amet nisl eu purus rhoncus ullamcorper.
+        </p>
+    </div>
+</body>
+</html>
