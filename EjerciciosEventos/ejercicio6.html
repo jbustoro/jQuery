@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ejercicio 6</title>
+</head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+    //Crear una página con un solo textarea. Cuando escribamos lo que sea, vigilará el número de vocales que estemos introduciendo. Si es par, el fondo de la página será azul cielo, si es impar, será de color naranja chillón.
+    $(function () {
+        $("textarea").on("keyup", function () {
+            let letters = $(this).val();
+            let counter = 0;
+
+            for (let i = 0; i < letters.length; i++) {
+                if ("AEIOU".indexOf(letters[i].toUpperCase()) >= 0) {
+                    counter++;
+                }
+            }
+
+            if (counter % 2 === 0) {
+                $("body").css("background-color", "blue");
+            } else {
+                $("body").css("background-color", "orange");
+            }
+        });
+    });
+</script>
+<body>
+    <textarea name="name" rows="8" cols="80"></textarea>
+</body>
+</html>
