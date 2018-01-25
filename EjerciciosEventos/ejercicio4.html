@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ejercicio 4</title>
+</head>
+<style media="screen">
+    .line1 {
+        width: 100%;
+        float: left;
+    }
+
+    .line2 {
+        width: 100%;
+        float: left;
+    }
+
+    .box {
+        height: 10em;
+        width: 10em;
+        border: 0.5em;
+        margin: 1em;
+        background-color: black;
+        float: left;
+    }
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+    //Crea una página con 4 cuadrados (div) que estén pegados entre si haciendo un cuadrado mas grande. Cuando pasemos el ratón por encima de ellos, se escribirá en la página en que cuadrado se encuentra el ratón actualmente y desde cual ha entrado.
+    $(function () {
+        $(".box").on({
+            mouseenter: function () {
+                $(".actual").text("Actual box: " + $(this).attr("id"));
+            },
+            mouseleave: function () {
+                $(".previous").text("Previous box: " + $(this).attr("id"));
+            }
+        });
+    });
+
+</script>
+<body>
+    <div class="line1">
+        <div class="box" id="box1"></div>
+        <div class="box" id="box2"></div>
+    </div>
+    <div class="line2">
+        <div class="box" id="box3"></div>
+        <div class="box" id="box4"></div>
+    </div>
+    <p class="actual"></p>
+    <p class="previous"></p>
+</body>
+</html>
