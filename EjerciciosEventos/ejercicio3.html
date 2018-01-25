@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ejercicio 3</title>
+</head>
+<style media="screen">
+    img {
+        height: 300px;
+    }
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(function() {
+        //Crear una página con varios párrafos y diferentes imágenes. Cuando se intente hacer clic con el botón derecho en alguna imagen deberá alertarnos de que esa acción está prohibida. Cuando seleccionemos parte del texto aparecerá otro alert diciéndonos que también está prohibido.
+        $("img").on("contextmenu", function (event) {
+            event.preventDefault();
+
+            alert("This action is forbidden!");
+        });
+
+        let mousedown = false;
+
+        $("p").on({
+            mousedown: function () {
+                mousedown = true;
+            },
+            mouseup: function () {
+                mousedown = false;
+            },
+            mousemove: function () {
+                if (mousedown && window.getSelection().toString()) {
+                    return alert("This action is forbidden!");
+                }
+            }
+        });
+    });
+</script>
+<body>
+    <p>
+        Reprehenderit est amet velit magna voluptate nulla sit proident dolore officia laborum. Ad fugiat adipisicing amet cupidatat qui magna ex cillum do amet aliquip ipsum nisi culpa. Occaecat voluptate cillum do ex ipsum do commodo voluptate dolore magna ut cillum proident dolore ipsum.
+    </p>
+    <p>
+        Adipisicing consectetur excepteur sit reprehenderit nulla aute exercitation aliquip ea. Dolore irure mollit adipisicing sint fugiat aute commodo do eu reprehenderit dolore consequat qui eu ex. Excepteur sint adipisicing adipisicing in adipisicing cupidatat aute consectetur laboris ad amet non. Labore consectetur pariatur eu cupidatat ullamco anim sunt quis anim irure occaecat ipsum do. Ullamco ea non sint in incididunt commodo ipsum ad voluptate nisi consectetur sint pariatur ad laborum.
+    </p>
+    <p>
+        Nisi ullamco pariatur pariatur magna nostrud sunt culpa elit culpa. Commodo fugiat tempor elit eu irure dolor tempor anim sit aliquip occaecat adipisicing deserunt nisi magna tempor. Irure nisi reprehenderit amet esse nulla officia qui adipisicing proident consequat aliquip sint. Pariatur nulla reprehenderit labore et sint minim sunt cillum adipisicing adipisicing velit. Eu et quis ea velit excepteur adipisicing qui nisi cupidatat enim laborum magna ex velit velit voluptate. Anim sint reprehenderit mollit irure cupidatat reprehenderit enim nostrud eu et. Laboris do est laborum aliquip occaecat Lorem consequat sint. Lorem sint ex elit elit culpa dolore proident fugiat voluptate velit do.
+    </p>
+    <p>
+        Sit amet do consectetur est ea occaecat excepteur in magna sint id reprehenderit. Elit duis voluptate eiusmod fugiat dolore minim enim labore occaecat anim anim duis consectetur dolor consequat mollit veniam. Id et et voluptate excepteur qui laboris sit. Amet deserunt proident consectetur ex fugiat consequat Lorem qui eu do anim id aliqua minim.
+    </p>
+
+    <img src="https://vignette.wikia.nocookie.net/southpark/images/6/6f/KennyMcCormick.png/revision/latest?cb=20160409020502">
+    <img src="https://vignette.wikia.nocookie.net/southpark/images/c/c4/Eric-cartman.png/revision/latest?cb=20171121092247">
+</body>
+</html>
