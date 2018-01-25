@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ejercicio 5</title>
+</head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+    //Crea una página en la que mostraremos un menú del día, con sus primeros, segundos y postres. Como es un menú del día solo podremos elegir un plato de cada sección, con lo que los elegiremos mediante unos radio buttons. Cuando marquemos un plato el texto del mismo deberá ponerse en cursiva. Por ultimo habrá un checkbox que marcaremos si queremos tomar café. Al pulsar el botón "Pedir" se mostrará un resumen del menú seleccionado al final de la página.
+    $(function () {
+        $("input[type=radio]").on("change", function () {
+            $("input:checked").parent().css("font-style", "italic");
+            $("input:not(:checked)").parent().css("font-style", "unset");
+        });
+
+        $(".menu").on("submit", function (event) {
+            $(".order > *").remove();
+            $(".order").append($("<h1/>", {text: "Order"}));
+
+            $("input:checked").each(function () {
+                $(".order").append($("<p/>", {text: $(this).val()}));
+            });
+
+            event.preventDefault();
+        });
+    });
+</script>
+<body>
+    <form class="menu">
+        <h1>Menu</h1>
+        <label><input type="radio" name="plate" value="Pizza">Pizza<br></label>
+        <label><input type="radio" name="plate" value="Cheeseburger">Cheeseburger<br></label>
+        <label><input type="radio" name="plate" value="Salad">Salad<br></label>
+        <label><input type="checkbox" name="drink" value="Coffee">Coffee<br><br></label>
+
+        <input type="submit" name="btn" value="Order">
+    </form>
+
+    <div class="order"></div>
+</body>
+</html>
