@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Efectos jQuery</title>
+</head>
+<style media="screen">
+    body {
+       margin: 0;
+       padding: 0;
+    }
+
+    .container {
+        position: relative;
+        height: 100vh;
+        width: 100%;
+        background-color: black;
+    }
+
+    .box {
+        position:absolute;
+        height: 10vh;
+        width: 10vh;
+        margin:0;
+        padding:5px;
+    }
+
+    .box:nth-child(1) {
+        background-color: green;
+        top: 5vh;
+        left: 5vh;
+    }
+
+    .box:nth-child(2) {
+        background-color: red;
+        top: 5vh;
+        right: 5vh;
+    }
+
+    .box:nth-child(3) {
+        background-color: yellow;
+        bottom: 5vh;
+        left: 5vh;
+    }
+
+    .box:nth-child(4) {
+        background-color: pink;
+        bottom: 5vh;
+        right: 5vh;
+    }
+</style>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+<script size="text/javascript">
+    $(function () {
+        // Cuando hagamos click encima de algún cuadrado, este se volverá un poco más grande, y si hacemos click en uno que ya esta agrandado volverá a su tamaño. Solo puede estar un cuadrado aumentado de tamaño en cada momento.
+        function isBig(boxSize) {
+            if (boxSize === "big") {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        function checkBoxSizes() {
+            let boxSizes = [];
+
+            $(".box").each(function () {
+                boxSizes.push($(this).attr("size"));
+            });
+
+            for (let i = 0; i < boxSizes.length; i++) {
+                if (isBig(boxSizes[i])) {
+                    return true;
+                }
+            }
+        }
+
+        $(".box").on("click", function(){
+            if (checkBoxSizes()) {
+                if (isBig($(this).attr("size"))) {
+                    $(this).attr("size", "default");
+                    $(this).css({"height": "-=10vh", "width": "-=10vh"});
+                }
+            } else {
+                $(this).attr("size", "big");
+                $(this).css({"height": "+=10vh", "width": "+=10vh"});
+            }
+        });
+
+        // Al hacer doble click, el cuadrado en cuestión se desvanecerá y volverá a aparecer pero con el color cambiado.
+        function getRandomColor() {
+            let letters = "0123456789ABCDEF";
+            let color = "#";
+
+            for (let i = 0; i < 6; i++ ) {
+                color += letters[Math.round(Math.random() * 15)];
+            }
+            return color;
+        }
+
+        $(".box").on("dblclick", function () {
+            $(this).fadeToggle("slow", function() {
+                $(this).css({"background-color": getRandomColor});
+            });
+            $(this).fadeToggle();
+        });
+    });
+</script>
+<body>
+    <div class="container">
+        <div class="box" size="default"></div>
+        <div class="box" size="default"></div>
+        <div class="box" size="default"></div>
+        <div class="box" size="default"></div>
+    </div>
+</body>
+</html>
