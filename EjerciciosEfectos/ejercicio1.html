@@ -106,6 +106,59 @@
             });
             $(this).fadeToggle();
         });
+
+        // Con las teclas de las flechas podremos mover el cuadrado que este agrandado. Si por algún casual se cruzara con otro de los cuadrados, el cuadrado que se está moviendo se borrara.
+        $("html").on("keydown", function(e){
+            switch(e.key) {
+                case "ArrowLeft":
+                    $(".box[size='big']").css({"left": "-=5vh"});
+                    checkCollision();
+                    break;
+                case "ArrowUp":
+                    $(".box[size='big']").css({"top": "-=5vh"});
+                    checkCollision();
+                    break;
+                case "ArrowRight":
+                    $(".box[size='big']").css({"left": "+=5vh"});
+                    checkCollision();
+                    break;
+                case "ArrowDown":
+                    $(".box[size='big']").css({"top": "+=5vh"});
+                    checkCollision();
+                    break;
+            }
+        });
+
+        function collision($box1, $box2) {
+            let x1 = $box1.offset().left;
+            let y1 = $box1.offset().top;
+            let h1 = $box1.outerHeight(true);
+            let w1 = $box1.outerWidth(true);
+            let b1 = y1 + h1;
+            let r1 = x1 + w1;
+            let x2 = $box2.offset().left;
+            let y2 = $box2.offset().top;
+            let h2 = $box2.outerHeight(true);
+            let w2 = $box2.outerWidth(true);
+            let b2 = y2 + h2;
+            let r2 = x2 + w2;
+
+            if (b1 < y2 || y1 > b2 || r1 < x2 || x1 > r2) {
+                return false;
+            }
+            return true;
+        }
+
+        function checkCollision() {
+            $(".box[size='default']").each(function () {
+                if (collision($(this), $(".box[size='big']"))) {
+                    $(".box[size='big']").html("<img src='http://pngimg.com/uploads/explosion/explosion_PNG15401.png' width='200px'/>").css({"background-color": "black"}).attr("size", "none");
+                    setTimeout(function(){
+                        $(".box[size='none']").hide();
+                    }, 600);
+                }
+             });
+         }
     });
 </script>
 <body>
