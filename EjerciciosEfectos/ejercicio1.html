@@ -109,23 +109,25 @@
 
         // Con las teclas de las flechas podremos mover el cuadrado que este agrandado. Si por algún casual se cruzara con otro de los cuadrados, el cuadrado que se está moviendo se borrara.
         $("html").on("keydown", function(e){
-            switch(e.key) {
-                case "ArrowLeft":
-                    $(".box[size='big']").css({"left": "-=5vh"});
-                    checkCollision();
-                    break;
-                case "ArrowUp":
-                    $(".box[size='big']").css({"top": "-=5vh"});
-                    checkCollision();
-                    break;
-                case "ArrowRight":
-                    $(".box[size='big']").css({"left": "+=5vh"});
-                    checkCollision();
-                    break;
-                case "ArrowDown":
-                    $(".box[size='big']").css({"top": "+=5vh"});
-                    checkCollision();
-                    break;
+            if ($(".box[size='big']").length) {
+                switch(e.key) {
+                    case "ArrowLeft":
+                        $(".box[size='big']").css({"left": "-=5vh"});
+                        checkCollision();
+                        break;
+                    case "ArrowUp":
+                        $(".box[size='big']").css({"top": "-=5vh"});
+                        checkCollision();
+                        break;
+                    case "ArrowRight":
+                        $(".box[size='big']").css({"left": "+=5vh"});
+                        checkCollision();
+                        break;
+                    case "ArrowDown":
+                        $(".box[size='big']").css({"top": "+=5vh"});
+                        checkCollision();
+                        break;
+                }
             }
         });
 
@@ -152,10 +154,12 @@
         function checkCollision() {
             $(".box[size='default']").each(function () {
                 if (collision($(this), $(".box[size='big']"))) {
-                    $(".box[size='big']").html("<img src='http://pngimg.com/uploads/explosion/explosion_PNG15401.png' width='200px'/>").css({"background-color": "black"}).attr("size", "none");
+                    $(".box[size='big']").css("background-color", "black").html("<img src='http://pngimg.com/uploads/explosion/explosion_PNG15401.png' width='200px'/>").attr("size", "none");
                     setTimeout(function(){
                         $(".box[size='none']").hide();
                     }, 600);
+
+                    return false;
                 }
              });
          }
